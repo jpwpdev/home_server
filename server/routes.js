@@ -39,20 +39,18 @@ module.exports = (config) => {
         });
     });
 
-    router.post("/fridgeData", async (req, res) => {
-        // Assuming req.body is structured as { category: String, items: [String] }
-        try {
-            const { category, items } = req.body;
-    
-            // Update the document for the given category, or insert if it doesn't exist
-            const result = await FridgeItem.findOneAndUpdate({ category }, { category, items }, { new: true, upsert: true });
-    
-            console.log(result); // Debugging: See the result of the operation
+    router.post("/fridgeData", (req, res, next) => {
+        announceConnection("/fridgeData", next);
+    }, (req, res) => {
+        
+        fs.writeFile("./apps/fridgeApp.json", JSON.stringify(req.body), (err) => {
+            if(err)
+            {
+                res.status(500).json({response: "FAILED"});
+            }
+            
             res.status(200).json({response: "OK"});
-        } catch (err) {
-            console.error(err); // Debugging: Log any errors
-            res.status(500).json({response: "FAILED"});
-        }
+        });
     });
 
     return router;
