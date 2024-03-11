@@ -3,36 +3,11 @@ const announceConnection = (endpoint, next) => {
     next();
 };
 
-// async function asyncFunction(pool) {
-//     let conn;
-//     try {
-//         conn = await pool.getConnection();
-//         const rows = await conn.query("SELECT 1 as val");
-//         console.log(rows); //[ {val: 1}, meta: ... ]
-//         // Use conn to execute further queries
-//     } catch (err) {
-//         throw err;
-//     } finally {
-//         if (conn) conn.end(); //release to pool
-//     }
-// }
-
 module.exports = (config) => {
     const router = require("express").Router();
     const {spawn} = require("child_process");
     const fs = require("fs");
     const path = require("path");
-    const mariadb = require('mariadb');
-
-    const pool = mariadb.createPool(config.serverInfo.db.pool);
-
-    const itemSchema = new Schema({
-        category: String,
-        items: [String]
-    });
-
-    // const FridgeItem = model('FridgeItem', itemSchema);
-
 
     Object.keys(config.pages).forEach((page) => {
         const currentPage = config.pages[page];
@@ -64,21 +39,21 @@ module.exports = (config) => {
         });
     });
 
-    // router.post("/fridgeData", async (req, res) => {
-    //     // Assuming req.body is structured as { category: String, items: [String] }
-    //     try {
-    //         const { category, items } = req.body;
+    router.post("/fridgeData", async (req, res) => {
+        // Assuming req.body is structured as { category: String, items: [String] }
+        try {
+            const { category, items } = req.body;
     
-    //         // Update the document for the given category, or insert if it doesn't exist
-    //         const result = await FridgeItem.findOneAndUpdate({ category }, { category, items }, { new: true, upsert: true });
+            // Update the document for the given category, or insert if it doesn't exist
+            const result = await FridgeItem.findOneAndUpdate({ category }, { category, items }, { new: true, upsert: true });
     
-    //         console.log(result); // Debugging: See the result of the operation
-    //         res.status(200).json({response: "OK"});
-    //     } catch (err) {
-    //         console.error(err); // Debugging: Log any errors
-    //         res.status(500).json({response: "FAILED"});
-    //     }
-    // });
+            console.log(result); // Debugging: See the result of the operation
+            res.status(200).json({response: "OK"});
+        } catch (err) {
+            console.error(err); // Debugging: Log any errors
+            res.status(500).json({response: "FAILED"});
+        }
+    });
 
     return router;
 };

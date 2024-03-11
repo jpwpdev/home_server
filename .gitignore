@@ -2,3 +2,4 @@ server/node_modules/*
 server/node_modules/
 backend/
 server/apps/fridgeApp.json
+server/package-lock.json
