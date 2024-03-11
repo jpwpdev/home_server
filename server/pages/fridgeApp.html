@@ -23,7 +23,7 @@
     </div>
 
     <div class="input-area">
-        <input type="text" ng-model="newItem" ng-keyup="$event.keyCode == 13 && addItem()"<input type="text" ng-model="newItem" ng-focus="adjustContainerHeight(true)" ng-blur="adjustContainerHeight(false)">
+        <input type="text" ng-model="newItem" ng-keydown="$event.keyCode == 13 && addItem()" ng-focus="adjustContainerHeight(true)" ng-blur="adjustContainerHeight(false)">
         <button ng-click="addItem()">Add Item</button>
     </div>
 

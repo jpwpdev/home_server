@@ -7,12 +7,19 @@ angular.module('fridgeApp', [])
     });
 
     $scope.addItem = function() {
-        if ($scope.newItem && $scope.newItem !== "") {
-            $scope.jsonData.items[$scope.selectedCategory].push($scope.newItem);
+        if ($scope.newItem && $scope.newItem.trim() !== "") {
+            // Logic to add the item...
+            $scope.jsonData.items[$scope.selectedCategory].push($scope.newItem.trim());
             $scope.newItem = ''; // Clear the input field after adding
             $scope.updateItems();
+            
+            // Keep input focused after adding the item
+            setTimeout(function() {
+                document.querySelector('input[ng-model="newItem"]').focus();
+            }, 0);
         }
     };
+    
 
     $scope.removeItem = function(item) {
         const index = $scope.jsonData.items[$scope.selectedCategory].indexOf(item);
@@ -44,5 +51,5 @@ angular.module('fridgeApp', [])
             container.style.height = 'calc(100vh - 150px)';
         }
     };
-    
+
 }]);
