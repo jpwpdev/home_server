@@ -3,4 +3,4 @@ from os import system
 
 with open("package.json") as file: data = load(file)
 dependencies = " ".join(list(data["dependencies"].keys()))
-system(f"npm install {dependencies}")
+system(f"sudo npm install {dependencies}")
