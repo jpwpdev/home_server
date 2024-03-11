@@ -1,0 +1,16 @@
+{
+    "serverInfo": {
+        "port": 3000,
+        "host": "0.0.0.0",
+        "cert": "./server.cert",
+        "key": "./server.key"
+    },
+    "pages": {
+        "/": {
+            "html": "index.html"
+        },
+        "/fridgeApp": {
+            "html": "fridgeApp.html"
+        }
+    }
+}
