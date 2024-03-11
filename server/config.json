@@ -3,7 +3,16 @@
         "port": 3000,
         "host": "0.0.0.0",
         "cert": "./server.cert",
-        "key": "./server.key"
+        "key": "./server.key",
+        "db": {
+            "pool": {
+                "host": "localhost",
+                "user": "admin",
+                "password": "password",
+                "database": "fridge_app",
+                "connectionLimit": 3
+            }
+        }
     },
     "pages": {
         "/": {
