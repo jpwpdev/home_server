@@ -1,0 +1,5 @@
+mv: cannot stat 'dokuwiki-20XX-XX-XX': No such file or directory
+Job for nginx.service failed.
+See "systemctl status nginx.service" and "journalctl -xe" for details.
+chown: cannot access '/var/www/dokuwiki': No such file or directory
+chmod: cannot access '/var/www/dokuwiki': No such file or directory

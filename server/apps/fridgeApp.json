@@ -1,13 +1,1 @@
-{
-    "items": {
-        "produce": [],
-        "lunch": [],
-        "breakfast": [],
-        "dinner": [],
-        "dessert": [],
-        "dairy": [],
-        "deli": [],
-        "condiments": [],
-        "milk": []
-    }
-}
+{"items":{"produce":["Oranges","Lime","Lemon","Ginger","Basil","Red bell pepper","Red onion","Spinach","Mini cucumbers"],"lunch":["Spicy stir fry","Rice","Peaches","Red pepper, spinach, and cheddar quiche"],"breakfast":[],"dinner":["Pasta","Pesto","Vegetables"],"dessert":[],"dairy":["Shredded Parmesan","Goat cheese","Eggs","Gouda bars","Gouda slices","Quesadilla cheese","Mascarpone","Mild cheddar","Vegan cheese","Sweet cream","Whipped cream","Gingerbread whipped cream"],"deli":["Prosciutto","Marissa’s dip","Tzatziki dip"],"condiments":["Pepper jelly","Tapatio hot sauce","Sweet red chili sauce","Raspberry jam","Garlic jar","Chutney","Ranch","Hoisin sauce","Ketchup","Maple syrup","Sweet baby rays bbq","Poppyseed dressing","Gyoza sauce"],"drinks":["Fresca","Red Gatorade","Coconut milk","Strawberry cranberry juice","Prosecco"],"frozen":["Jeni’s biscuit and peach ice cream","Chocolate Ukrainian ice cream","Pork?","Butter","Cream cheese blocks","Bbq chicken pizza","Chicken power bowl","Varenyky","Polish varenyky","Pie crust","Jimmy Dean sandwich","Peaches","Vegetable broth","Vegetable scraps","Compost","Bananas","Sweet peas","Kennedy food","Cool whip"]}}
