@@ -3,3 +3,5 @@ server/node_modules/
 qr_code_generator/
 server/apps/fridgeApp.json
 server/package-lock.json
+
+/doku*
