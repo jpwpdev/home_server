@@ -1,6 +1,6 @@
 console.log("test");
 
-angular.module('choreApp', ['ngResource'])
+angular.module('choreApp', [])
 .controller('MainController', ['$scope', '$http', function($scope, $http) {
     $scope.choreData = {};
     $scope.selectedKey = '';
@@ -49,6 +49,7 @@ angular.module('choreApp', ['ngResource'])
     };
 
     // Initial data load
+    console.log("calling loadData");
     $scope.loadData();
 }])
 .directive('ngEnter', function () {
