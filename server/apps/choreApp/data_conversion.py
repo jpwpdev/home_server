@@ -19,7 +19,7 @@ def save_data(filename, data):
         json.dump(data, file, indent=4)
 
 def main():
-    filename = 'choreData.json' # Update this with the path to your file
+    filename = 'app.json' # Update this with the path to your file
     current_data = load_data(filename)
     updated_data = update_structure(current_data)
     save_data(filename, updated_data)
