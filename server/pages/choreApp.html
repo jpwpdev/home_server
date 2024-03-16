@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-US" ng-app="choreApp">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Chore App</title>
+        <title>Chore App</title>
 
-    <link rel="stylesheet" href="/css/choreApp.css">
+        <link rel="stylesheet" href="/css/choreApp.css">
 
-</head>
+    </head>
 
-<body ng-controller="MainController">
-
-    <!-- html here -->
-
-</body>
+    <body ng-controller="MainController">
+        <select ng-model="selectedKey" ng-options="key for key in Object.keys(choreData)" ng-change="updateChoreList()">
+        </select>
+        <div class="input-area">
+            <input type="text" ng-model="newChore" ng-enter="addChore()" placeholder="Add new chore" />
+            <button ng-click="addChore()">Add Chore</button>
+        </div>
+        <button ng-click="sortChores()">Sort and Reset</button>
+        <div class="items-container">
+            <table>
+                <tr ng-repeat="chore in choreList">
+                    <td><input type="checkbox" ng-model="chore.checked" ng-change="sortChores()">{{chore.name}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script type="application/javascript" src="js/choreApp.js"></script>
