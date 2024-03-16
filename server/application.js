@@ -2,8 +2,8 @@ const fs = require("fs");
 
 const Application = {
     appName: "",
-    get: (req, res, next) => {
-        fs.readFile(`apps/${appName}/app.json`, "utf-8", (err, data) => {
+    get: function (req, res, next) {
+        fs.readFile(`apps/${this.appName}/app.json`, "utf-8", (err, data) => {
             if(err)
             {
                 res.status(500).send("null");
@@ -11,8 +11,8 @@ const Application = {
             res.status(200).json(JSON.parse(data));
         });
     },
-    post: (req, res, next) => {
-        fs.writeFile(`apps/${appName}/app.json`, JSON.stringify(req.body), (err) => {
+    post: function (req, res, next) {
+        fs.writeFile(`apps/${this.appName}/app.json`, JSON.stringify(req.body), (err) => {
             if(err)
             {
                 res.status(500).json({response: "FAILED"});
