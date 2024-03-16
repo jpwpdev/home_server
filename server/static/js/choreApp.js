@@ -8,7 +8,9 @@ angular.module('choreApp', ['ngResource'])
     $scope.choreList = [];
 
     $scope.loadData = function() {
+        console.log("sending get request");
         $http.get('https://10.0.0.64:3000/choreData').then(function(response) {
+            console.log("returned", response.data);
             $scope.choreData = response.data;
             $scope.selectedKey = Object.keys($scope.choreData)[0];
             $scope.updateChoreList();

@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+select,
+.input-area input,
+button {
+    font-size: 16px; /* Ensures text is large enough to prevent zooming */
+}
+
+select {
+    width: 100%; /* Makes select box full width on smaller screens */
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.items-container {
+    overflow-y: auto;
+    height: calc(100vh - 180px); /* Adjusted to accommodate increased input/button sizes */
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+button {
+    padding: 10px 15px; /* Increased padding for better touch target size */
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.input-area {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows elements to wrap on smaller screens */
+}
+
+.input-area input {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-area button {
+    min-width: 100px; /* Ensures button does not become too small */
+}
+
+@media (max-width: 480px) {
+    .input-area {
+        flex-direction: column;
+    }
+    
+    .input-area input,
+    .input-area button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    select {
+        width: 100%;
+    }
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+td {
+    vertical-align: top; /* Aligns items at the top of the table cell */
+}
+
