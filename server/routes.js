@@ -66,20 +66,20 @@ module.exports = (config) => {
 
     //=============================================================================== checklist app =================================================================================
 
-    router.get("/choreApp", (req, res, next) => {
+    router.get("/choreData", (req, res, next) => {
         const connectionData = {
             req: req,
             res: res,
             next: next
         };
-        announceConnection("/choreApp/", next);
+        announceConnection("/choreData/", next);
     }, (req, res) => {
         const myApp = application("choreApp");
         myApp.get(req, res);
     });
 
-    router.post("/choreApp", (req, res, next) => {
-        announceConnection("/choreApp", next);
+    router.post("/choreData", (req, res, next) => {
+        announceConnection("/choreData", next);
     }, (req, res) => {
         const myApp = application("choreApp");
         myApp.post(req, res);

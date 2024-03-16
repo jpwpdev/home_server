@@ -1,3 +1,5 @@
+console.log("test");
+
 angular.module('choreApp', ['ngResource'])
 .controller('MainController', ['$scope', '$http', function($scope, $http) {
     $scope.choreData = {};
