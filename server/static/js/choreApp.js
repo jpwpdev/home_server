@@ -25,20 +25,27 @@ angular.module('choreApp', [])
 
     $scope.updateChoreList = function() {
         if ($scope.selectedKey && $scope.choreData[$scope.selectedKey]) {
-            console.log("update chore list in if statement");
-            $scope.choreList = $scope.choreData[$scope.selectedKey].map(chore => ({ name: chore, checked: false }));
-            console.log($scope.choreList);
+            $scope.choreList = angular.copy($scope.choreData[$scope.selectedKey]);
         }
-    };
+    };    
 
     $scope.addChore = function() {
         if ($scope.newChore.trim() !== '') {
-            $scope.choreData[$scope.selectedKey].push($scope.newChore);
+            $scope.choreData[$scope.selectedKey].push({ name: $scope.newChore, checked: false });
             $scope.updateChoreList();
             $scope.newChore = '';
             $scope.updateServer();
         }
     };
+    
+    $scope.updateChoreCheckedState = function(chore) {
+        // Find the chore in choreData and update its checked state
+        let foundChore = $scope.choreData[$scope.selectedKey].find(c => c.name === chore.name);
+        if (foundChore) {
+            foundChore.checked = chore.checked;
+        }
+        $scope.updateServer();
+    };    
 
     $scope.updateServer = function() {
         $http.post('https://10.0.0.64:3000/choreData', $scope.choreData).then(function(response) {
