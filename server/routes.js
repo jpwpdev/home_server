@@ -42,7 +42,7 @@ module.exports = (config) => {
         //     res.status(200).json(JSON.parse(data));
         // });
 
-        const myApp = application.createApplication("fridgeApp");
+        const myApp = application("fridgeApp");
         myApp.get(req, res);
     });
 
@@ -58,7 +58,7 @@ module.exports = (config) => {
             
         //     res.status(200).json({response: "OK"});
         // });
-        const myApp = application.createApplication("fridgeApp");
+        const myApp = application("fridgeApp");
         myApp.post(req, res);
     });
 
@@ -74,14 +74,14 @@ module.exports = (config) => {
         };
         announceConnection("/choreApp/", next);
     }, (req, res) => {
-        const myApp = application.createApplication("choreApp");
+        const myApp = application("choreApp");
         myApp.get(req, res);
     });
 
     router.post("/choreApp", (req, res, next) => {
         announceConnection("/choreApp", next);
     }, (req, res) => {
-        const myApp = application.createApplication("choreApp");
+        const myApp = application("choreApp");
         myApp.post(req, res);
     });
 

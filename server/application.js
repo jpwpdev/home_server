@@ -30,3 +30,5 @@ const createApplication = (appName) => {
 
     return app
 };
+
+module.exports = createApplication;
