@@ -9,20 +9,20 @@ server {
     location / {
         proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
+        proxy_set_header Upgrade \$http_upgrade; # Escape $ with \$
+        proxy_set_header Connection 'upgrade'; # No need to escape single quotes
+        proxy_set_header Host \$host; # Escape $ with \$
+        proxy_cache_bypass \$http_upgrade; # Escape $ with \$
     }
 
-        location /wiki {
+    location /wiki {
         alias /var/www/dokuwiki;
         index doku.php;
 
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
             fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # Make sure this matches your PHP-FPM socket path
-            fastcgi_param SCRIPT_FILENAME $request_filename;
+            fastcgi_param SCRIPT_FILENAME \$request_filename; # Escape $ with \$
         }
     }
 }
