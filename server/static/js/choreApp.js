@@ -6,12 +6,14 @@ angular.module('choreApp', [])
     $scope.selectedKey = '';
     $scope.newChore = '';
     $scope.choreList = [];
+    $scope.choreLists = [];
 
     $scope.loadData = function() {
         console.log("sending get request");
         $http.get('https://10.0.0.64:3000/choreData').then(function(response) {
             console.log("returned", response.data);
             $scope.choreData = response.data;
+            $scope.choreLists = Object.keys($scope.choreData);
             $scope.selectedKey = Object.keys($scope.choreData)[0];
             console.log("before", $scope.choreData, $scope.selectedKey);
             $scope.updateChoreList();
