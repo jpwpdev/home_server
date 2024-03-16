@@ -20,6 +20,9 @@
         },
         "/fridgeApp": {
             "html": "fridgeApp.html"
+        },
+        "/choreApp": {
+            "html": "choreApp.html"
         }
     }
 }

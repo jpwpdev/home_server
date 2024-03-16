@@ -6,7 +6,7 @@ angular.module('choreApp', ['ngResource'])
     $scope.choreList = [];
 
     $scope.loadData = function() {
-        $http.get('https://10.0.0.64:3000/choreApp').then(function(response) {
+        $http.get('https://10.0.0.64:3000/choreData').then(function(response) {
             $scope.choreData = response.data;
             $scope.selectedKey = Object.keys($scope.choreData)[0];
             $scope.updateChoreList();
@@ -31,7 +31,7 @@ angular.module('choreApp', ['ngResource'])
     };
 
     $scope.updateServer = function() {
-        $http.post('https://10.0.0.64:3000/choreApp', $scope.choreData).then(function(response) {
+        $http.post('https://10.0.0.64:3000/choreData', $scope.choreData).then(function(response) {
             console.log('Data updated successfully');
         }, function(error) {
             console.log('Error updating data:', error);
