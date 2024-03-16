@@ -5,4 +5,4 @@ if [[ ! -f server.key || ! -f server.cert ]]; then
 fi
 
 # sudo npm run start
-sudo pm2 start start.js --name myapp
+sudo pm2 start server.js --name myapp
