@@ -23,7 +23,9 @@ angular.module('choreApp', [])
 
     $scope.updateChoreList = function() {
         if ($scope.selectedKey && $scope.choreData[$scope.selectedKey]) {
+            console.log("update chore list in if statement");
             $scope.choreList = $scope.choreData[$scope.selectedKey].map(chore => ({ name: chore, checked: false }));
+            console.log($scope.choreList);
         }
     };
 
