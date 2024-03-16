@@ -13,21 +13,27 @@
     </head>
 
     <body ng-controller="MainController">
-        <select ng-model="selectedKey" ng-options="key for key in choreLists" ng-change="updateChoreList()">
-        </select>
+        <div class="input-area">
+            <select ng-model="selectedKey" ng-options="key for key in choreLists" ng-change="updateChoreList()">
+            </select>
+            <button ng-click="sortChores()">Sort and Reset</button>
+            <button ng-click="removeChecked()">Remove all checked</button>
+        </div>
         <div class="input-area">
             <input type="text" ng-model="newChore" ng-enter="addChore()" placeholder="Add new chore" />
             <button ng-click="addChore()">Add Chore</button>
         </div>
-        <button ng-click="sortChores()">Sort and Reset</button>
         <div class="items-container">
             <table>
                 <tr ng-repeat="chore in choreList">
-                    <td><input type="checkbox" ng-model="chore.checked" ng-change="sortChores()">{{chore.name}}</td>
+                    <td>{{chore.name}}</td>
+                    <td style="text-align:right;"><input type="checkbox" ng-model="chore.checked" ng-change="sortChores()"></td>
+                    <td><button ng-click="removeChore(chore.name)">Remove</button></td>
                 </tr>
             </table>
         </div>
     </body>
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script type="application/javascript" src="js/choreApp.js"></script>

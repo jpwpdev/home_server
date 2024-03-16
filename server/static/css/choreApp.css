@@ -88,3 +88,10 @@ td {
     vertical-align: top; /* Aligns items at the top of the table cell */
 }
 
+.input-area {
+    display: flex;
+    justify-content: start; /* Align items to the start */
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}

@@ -54,6 +54,20 @@ angular.module('choreApp', [])
         $scope.choreList.sort((a, b) => b.checked - a.checked);
     };
 
+    $scope.removeChecked = function() {
+        $scope.choreData[$scope.selectedKey] = $scope.choreData[$scope.selectedKey].filter(chore => 
+            !$scope.choreList.find(c => c.name === chore && c.checked)
+        );
+        $scope.updateChoreList();
+        $scope.updateServer();
+    };
+    
+    $scope.removeChore = function(choreName) {
+        $scope.choreData[$scope.selectedKey] = $scope.choreData[$scope.selectedKey].filter(chore => chore !== choreName);
+        $scope.updateChoreList();
+        $scope.updateServer();
+    };    
+
     // Initial data load
     console.log("calling loadData");
     $scope.loadData();
