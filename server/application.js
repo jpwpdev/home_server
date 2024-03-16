@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const Application = {
-    appName: appName,
+    appName: "",
     get: (req, res, next) => {
         fs.readFile(`apps/${appName}/app.json`, "utf-8", (err, data) => {
             if(err)
