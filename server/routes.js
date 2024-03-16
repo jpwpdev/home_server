@@ -9,6 +9,8 @@ module.exports = (config) => {
     const fs = require("fs");
     const path = require("path");
 
+    const application = require("./application");
+
     Object.keys(config.pages).forEach((page) => {
         const currentPage = config.pages[page];
         const fn = path.join("pages", currentPage.html);
@@ -27,31 +29,63 @@ module.exports = (config) => {
         });
     });
 
+    //================================================================================= fridge app ==================================================================================
+
     router.get("/fridgeData", (req, res, next) => {
         announceConnection("/fridgeData", next);
     }, (req, res) => {
-        fs.readFile("./apps/fridgeApp.json", "utf-8", (err, data) => {
-            if(err)
-            {
-                res.status(500).send("null");
-            }
-            res.status(200).json(JSON.parse(data));
-        });
+        // fs.readFile("./apps/fridgeApp/fridgeApp.json", "utf-8", (err, data) => {
+        //     if(err)
+        //     {
+        //         res.status(500).send("null");
+        //     }
+        //     res.status(200).json(JSON.parse(data));
+        // });
+
+        const myApp = application.createApplication("fridgeApp");
+        myApp.get(req, res);
     });
 
     router.post("/fridgeData", (req, res, next) => {
         announceConnection("/fridgeData", next);
     }, (req, res) => {
         
-        fs.writeFile("./apps/fridgeApp.json", JSON.stringify(req.body), (err) => {
-            if(err)
-            {
-                res.status(500).json({response: "FAILED"});
-            }
+        // fs.writeFile("./apps/fridgeApp/fridgeApp.json", JSON.stringify(req.body), (err) => {
+        //     if(err)
+        //     {
+        //         res.status(500).json({response: "FAILED"});
+        //     }
             
-            res.status(200).json({response: "OK"});
-        });
+        //     res.status(200).json({response: "OK"});
+        // });
+        const myApp = application.createApplication("fridgeApp");
+        myApp.post(req, res);
     });
+
+    //================================================================================= fridge app ==================================================================================
+
+    //=============================================================================== checklist app =================================================================================
+
+    router.get("/choreApp", (req, res, next) => {
+        const connectionData = {
+            req: req,
+            res: res,
+            next: next
+        };
+        announceConnection("/choreApp/", next);
+    }, (req, res) => {
+        const myApp = application.createApplication("choreApp");
+        myApp.get(req, res);
+    });
+
+    router.post("/choreApp", (req, res, next) => {
+        announceConnection("/choreApp", next);
+    }, (req, res) => {
+        const myApp = application.createApplication("choreApp");
+        myApp.post(req, res);
+    });
+
+    //=============================================================================== checklist app =================================================================================
 
     return router;
 };
