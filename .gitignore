@@ -5,3 +5,4 @@ server/apps/fridgeApp.json
 server/package-lock.json
 
 /doku*
+*.bat
