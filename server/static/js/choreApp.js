@@ -13,8 +13,9 @@ angular.module('choreApp', [])
             console.log("returned", response.data);
             $scope.choreData = response.data;
             $scope.selectedKey = Object.keys($scope.choreData)[0];
-            console.log($scope.choreData, $scope.selectedKey);
+            console.log("before", $scope.choreData, $scope.selectedKey);
             $scope.updateChoreList();
+            console.log("after", $scope.choreData, $scope.selectedKey);
         }, function(error) {
             console.log('Error fetching data:', error);
         });
