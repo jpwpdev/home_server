@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-US" ng-app="fridgeApp">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/css/fridgeApp.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-</head>
+        <title>Fridge App</title>
 
-<body ng-controller="MainController">
+        <link rel="stylesheet" href="/css/fridgeApp.css">
 
-    <select ng-model="selectedCategory" ng-options="category for category in categories"></select>
+    </head>
 
-    <div class="items-container">
-        <table>
-            <tr ng-repeat="item in jsonData.items[selectedCategory]">
-                <td>{{ item }}</td>
-                <td><button ng-click="removeItem(item)">Remove</button></td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="input-area">
-        <input type="text" ng-model="newItem" ng-keydown="$event.keyCode == 13 && addItem()" ng-focus="adjustContainerHeight(true)" ng-blur="adjustContainerHeight(false)">
-        <button ng-click="addItem()">Add Item</button>
-    </div>
-
-</body>
+    <body ng-controller="MainController">
+        <select ng-model="selectedKey" ng-options="key for key in Object.keys(choreData)" ng-change="updateChoreList()">
+        </select>
+        <div class="input-area">
+            <input type="text" ng-model="newChore" ng-enter="addChore()" placeholder="Add new chore" />
+            <button ng-click="addChore()">Add Chore</button>
+        </div>
+        <button ng-click="sortChores()">Sort and Reset</button>
+        <div class="items-container">
+            <table>
+                <tr ng-repeat="chore in choreList">
+                    <td><input type="checkbox" ng-model="chore.checked" ng-change="sortChores()">{{chore.name}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script type="application/javascript" src="js/fridgeApp.js"></script>
