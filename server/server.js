@@ -11,8 +11,8 @@ app.use(cors());
 
 app.use(express.static("static"));
 
-const routes = require("./routes");
-const config = JSON.parse(fs.readFileSync(path.join("server", "config.json")));
+const routes = require(path.join("/home_server", "server", "routes"));
+const config = JSON.parse(fs.readFileSync(path.join("/home_server", "server", "config.json")));
 
 app.use(routes(config));
 

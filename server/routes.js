@@ -9,11 +9,11 @@ module.exports = (config) => {
     const fs = require("fs");
     const path = require("path");
 
-    const application = require("./application");
+    const application = require("/home_server/server/application");
 
     Object.keys(config.pages).forEach((page) => {
         const currentPage = config.pages[page];
-        const fn = path.join("server", "pages", currentPage.html);
+        const fn = path.join("/home_server", "server", "pages", currentPage.html);
         router.get(page, (req, res, next) => {
             announceConnection(page, next);
         }, (req, res) => {
