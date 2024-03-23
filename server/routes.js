@@ -13,7 +13,7 @@ module.exports = (config) => {
 
     Object.keys(config.pages).forEach((page) => {
         const currentPage = config.pages[page];
-        const fn = path.join("pages", currentPage.html);
+        const fn = path.join("server", "pages", currentPage.html);
         router.get(page, (req, res, next) => {
             announceConnection(page, next);
         }, (req, res) => {
