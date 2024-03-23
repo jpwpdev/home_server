@@ -11,6 +11,6 @@ sudo ln -sf /etc/nginx/sites-available/home_server.conf /etc/nginx/sites-enabled
 sudo nginx -t && sudo systemctl reload nginx
 
 # Start the Node.js server using the provided start.sh script
-sudo sh ${BASE_DIR}/server/start.sh
+cd ./server/ && sudo sh ${BASE_DIR}/server/start.sh
 
 echo "DokuWiki and Node.js server are running."
