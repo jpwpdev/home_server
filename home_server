@@ -12,6 +12,13 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;  # Adjust to match your PHP version
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
     # DokuWiki
     location /wiki/ {
         alias /var/www/dokuwiki/;
