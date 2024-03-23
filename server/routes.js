@@ -9,7 +9,7 @@ module.exports = (config) => {
     const fs = require("fs");
     const path = require("path");
 
-    const application = require("./server/application");
+    const application = require("./application");
 
     Object.keys(config.pages).forEach((page) => {
         const currentPage = config.pages[page];
@@ -34,7 +34,7 @@ module.exports = (config) => {
     router.get("/fridgeData", (req, res, next) => {
         announceConnection("/fridgeData", next);
     }, (req, res) => {
-        // fs.readFile("./server/apps/fridgeApp/fridgeApp.json", "utf-8", (err, data) => {
+        // fs.readFile("./apps/fridgeApp/fridgeApp.json", "utf-8", (err, data) => {
         //     if(err)
         //     {
         //         res.status(500).send("null");
@@ -50,7 +50,7 @@ module.exports = (config) => {
         announceConnection("/fridgeData", next);
     }, (req, res) => {
         
-        // fs.writeFile("./server/apps/fridgeApp/fridgeApp.json", JSON.stringify(req.body), (err) => {
+        // fs.writeFile("./apps/fridgeApp/fridgeApp.json", JSON.stringify(req.body), (err) => {
         //     if(err)
         //     {
         //         res.status(500).json({response: "FAILED"});
