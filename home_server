@@ -31,7 +31,7 @@ server {
         location ~ ^/wiki/(.+\.php)$ {
             try_files $uri $uri/ /wiki/index.php;
             include snippets/fastcgi-php.conf;
-            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # Adjust for your PHP version
+            fastcgi_pass unix:/var/run/php/php8.2-fpm.sock; # Adjust for your PHP version
             fastcgi_param SCRIPT_FILENAME $request_filename;
         }
 
