@@ -8,3 +8,5 @@ server/package-lock.json
 /doku*
 *.bat
 *.tar*
+
+testing.*

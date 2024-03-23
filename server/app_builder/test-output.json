@@ -1,0 +1,12 @@
+{
+    "details": {
+        "name": "test.html",
+        "appCode": "test.html",
+        "pageName": "testing.html"
+    },
+    "includes": {
+        "js": [],
+        "css": []
+    },
+    "data": {}
+}

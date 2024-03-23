@@ -1,0 +1,12 @@
+{
+    "details": {
+        "name": "Enter application name:",
+        "appCode": "Enter application code:",
+        "pageName": "Enter page name (or enter to use appCode):"
+    },
+    "includes": {
+        "js": [],
+        "css": []
+    },
+    "data": {}
+}
