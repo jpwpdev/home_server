@@ -2,4 +2,4 @@
 
 # sudo npm install pm2 -g
 
-sudo ./cert.sh
+sudo /home_server/server/cert.sh
