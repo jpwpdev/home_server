@@ -10,8 +10,8 @@ app.use(cors());
 
 app.use(express.static("static"));
 
-const routes = require("./routes");
-const config = JSON.parse(fs.readFileSync("./config.json"));
+const routes = require("./server/routes");
+const config = JSON.parse(fs.readFileSync("./server/config.json"));
 
 app.use(routes(config));
 
