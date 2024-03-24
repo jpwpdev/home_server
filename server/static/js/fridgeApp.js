@@ -1,6 +1,6 @@
 angular.module('fridgeApp', [])
 .controller('MainController', ['$scope', '$http', "$window", function($scope, $http, $window) {
-    $http.get('https://10.0.0.64:3000/fridgeData').then(function(response) {
+    $http.get('https://10.0.0.64/fridgeData').then(function(response) {
         $scope.jsonData = response.data;
         $scope.categories = Object.keys($scope.jsonData.items);
         $scope.selectedCategory = $scope.categories[0];
@@ -30,7 +30,7 @@ angular.module('fridgeApp', [])
     };
 
     $scope.updateItems = function() {
-        $http.post('https://10.0.0.64:3000/fridgeData', $scope.jsonData).then(function(response) {
+        $http.post('https://10.0.0.64/fridgeData', $scope.jsonData).then(function(response) {
             console.log('Data sent successfully');
         }, function(error) {
             console.error('Error sending data', error);
