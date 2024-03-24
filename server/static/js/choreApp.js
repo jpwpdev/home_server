@@ -10,7 +10,7 @@ angular.module('choreApp', [])
 
     $scope.loadData = function() {
         console.log("sending get request");
-        $http.get('https://10.0.0.64:3000/choreData').then(function(response) {
+        $http.get('https://10.0.0.64/choreData').then(function(response) {
             console.log("returned", response.data);
             $scope.choreData = response.data;
             $scope.choreLists = Object.keys($scope.choreData);
@@ -48,7 +48,7 @@ angular.module('choreApp', [])
     };    
 
     $scope.updateServer = function() {
-        $http.post('https://10.0.0.64:3000/choreData', $scope.choreData).then(function(response) {
+        $http.post('https://10.0.0.64/choreData', $scope.choreData).then(function(response) {
             console.log('Data updated successfully');
         }, function(error) {
             console.log('Error updating data:', error);
