@@ -1,13 +1,36 @@
-const announceConnection = (endpoint, next) => {
-    console.log(`Connection at endpoint ${endpoint}`);
-    next();
-};
-
 module.exports = (config) => {
     const router = require("express").Router();
     const {spawn} = require("child_process");
     const fs = require("fs");
     const path = require("path");
+
+    const logConnection = (req, res, next) => {
+        // Assuming 'config' is already defined and accessible in your context
+        const logFilePath = path.resolve(config.serverInfo.logFile);
+    
+        // Get timestamp
+        const timestamp = new Date().toISOString();
+    
+        // Get IP address of the connecting device
+        // Note: 'req.ip' might show the proxy's IP. Use 'req.headers['x-forwarded-for']' if behind a proxy.
+        const ip = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'].split(',').pop();
+    
+        // Collect other relevant information (customize as needed)
+        const method = req.method;
+        const url = req.originalUrl || req.url; // Depending on the middleware/framework being used
+    
+        // Construct the log string
+        const logString = `${timestamp} - IP: ${ip} - Method: ${method} - URL: ${url}\n`;
+    
+        // Append to log file asynchronously
+        fs.appendFile(logFilePath, logString, (err) => {
+            if (err) {
+                console.error('Error writing to log file:', err);
+            }
+            // Call next() whether logging succeeded or failed to not interrupt the request lifecycle
+            next();
+        });
+    };
 
     const application = require("/home_server/server/application");
 
@@ -15,7 +38,7 @@ module.exports = (config) => {
         const currentPage = config.pages[page];
         const fn = path.join("/home_server", "server", "pages", currentPage.html);
         router.get(page, (req, res, next) => {
-            announceConnection(page, next);
+            logConnection(page, next);
         }, (req, res) => {
             fs.readFile(fn, (err, data) => {
                 if(err)
@@ -32,7 +55,7 @@ module.exports = (config) => {
     //================================================================================= fridge app ==================================================================================
 
     router.get("/fridgeData", (req, res, next) => {
-        announceConnection("/fridgeData", next);
+        logConnection("/fridgeData", next);
     }, (req, res) => {
         // fs.readFile("./apps/fridgeApp/fridgeApp.json", "utf-8", (err, data) => {
         //     if(err)
@@ -47,7 +70,7 @@ module.exports = (config) => {
     });
 
     router.post("/fridgeData", (req, res, next) => {
-        announceConnection("/fridgeData", next);
+        logConnection("/fridgeData", next);
     }, (req, res) => {
         
         // fs.writeFile("./apps/fridgeApp/fridgeApp.json", JSON.stringify(req.body), (err) => {
@@ -72,14 +95,14 @@ module.exports = (config) => {
             res: res,
             next: next
         };
-        announceConnection("/choreData/", next);
+        logConnection("/choreData/", next);
     }, (req, res) => {
         const myApp = application("choreApp");
         myApp.get(req, res);
     });
 
     router.post("/choreData", (req, res, next) => {
-        announceConnection("/choreData", next);
+        logConnection("/choreData", next);
     }, (req, res) => {
         const myApp = application("choreApp");
         myApp.post(req, res);

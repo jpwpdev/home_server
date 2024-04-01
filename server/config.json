@@ -12,7 +12,8 @@
                 "database": "fridge_app",
                 "connectionLimit": 3
             }
-        }
+        },
+        "logFile": "/home_server/server/server.log"
     },
     "pages": {
         "/": {
