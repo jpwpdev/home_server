@@ -1,0 +1,23 @@
+{
+    "package": {
+        "projectName": "apps",
+        "authors": [],
+        "projectVersion": "0.0.1",
+        "pythonVersion": "3.11.0",
+        "description": "",
+        "keywords": [],
+        "venv": "fpp_app_env",
+        "readme": "README.md",
+        "license": "None"
+    },
+    "library": {
+        "dependencies": [
+            "qrcode"
+        ],
+        "entry": "src\\main.py",
+        "packageArgs": []
+    },
+    "alerts": {
+        "rename_venv": false
+    }
+}

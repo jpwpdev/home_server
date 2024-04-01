@@ -3,7 +3,7 @@
         "name": "Enter application name:",
         "appCode": "Enter application code:",
         "pageName": "Enter page name (or enter to use appCode):",
-        "apiEndpoint": "Enter the API endpoint:"
+        "hostName": "Enter host name:"
     },
     "includes": {
         "js": [],

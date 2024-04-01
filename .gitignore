@@ -12,3 +12,6 @@ server/package-lock.json
 testing.*
 
 local/*
+
+*__pycache__
+*fpp_app_env
