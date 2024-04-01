@@ -46,7 +46,7 @@ module.exports = (config) => {
         const currentPage = config.pages[page];
         const fn = path.join("/home_server", "server", "pages", currentPage.html);
         router.get(page, (req, res, next) => {
-            logConnection(page, next);
+            logConnection(page, req, res, next);
         }, (req, res) => {
             fs.readFile(fn, (err, data) => {
                 if(err)
