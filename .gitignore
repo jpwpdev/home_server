@@ -4,6 +4,8 @@ qr_code_generator/
 server/apps/fridgeApp.json
 server/apps/choreApp.json
 server/package-lock.json
+server/apps/app_engine/*
+server/apps/*/*
 
 /doku*
 *.bat

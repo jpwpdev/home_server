@@ -5,7 +5,7 @@ if [[ ! -f server.key || ! -f server.cert ]]; then
 fi
 
 cd /home_server/server || exit
-sudo npm start server.js
+sudo pm2 start server.js
 cd /home_server || exit
 # cd /home_server/server && sudo npm run start && cd /home_server
 # sudo pm2 start server.js --name myapp
