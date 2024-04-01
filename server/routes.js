@@ -4,7 +4,7 @@ module.exports = (config) => {
     const fs = require("fs");
     const path = require("path");
 
-    const logConnection = (req, res, next) => {
+    const logConnection = (endpoint, req, res, next) => {
         // Assuming 'config' is already defined and accessible in your context
         const logFilePath = path.resolve(config.serverInfo.logFile);
     
@@ -13,14 +13,14 @@ module.exports = (config) => {
     
         // Get IP address of the connecting device
         // Note: 'req.ip' might show the proxy's IP. Use 'req.headers['x-forwarded-for']' if behind a proxy.
-        // const ip = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'].split(',').pop();
+        const ip = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'].split(',').pop();
 
         // try
         // {
         //     const ip = req.ip || req.headers['x-forwarded-for'].split(',').pop();
         // } catch (err) {console.error(err);}
 
-        const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.ip;
+        // const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.ip;
     
         // Collect other relevant information (customize as needed)
         const method = req.method;
@@ -62,7 +62,7 @@ module.exports = (config) => {
     //================================================================================= fridge app ==================================================================================
 
     router.get("/fridgeData", (req, res, next) => {
-        logConnection("/fridgeData", next);
+        logConnection("/fridgeData", req, res, next);
     }, (req, res) => {
         // fs.readFile("./apps/fridgeApp/fridgeApp.json", "utf-8", (err, data) => {
         //     if(err)
@@ -77,7 +77,7 @@ module.exports = (config) => {
     });
 
     router.post("/fridgeData", (req, res, next) => {
-        logConnection("/fridgeData", next);
+        logConnection("/fridgeData", req, res, next);
     }, (req, res) => {
         
         // fs.writeFile("./apps/fridgeApp/fridgeApp.json", JSON.stringify(req.body), (err) => {
@@ -102,14 +102,14 @@ module.exports = (config) => {
             res: res,
             next: next
         };
-        logConnection("/choreData/", next);
+        logConnection("/choreData/", req, res, next);
     }, (req, res) => {
         const myApp = application("choreApp");
         myApp.get(req, res);
     });
 
     router.post("/choreData", (req, res, next) => {
-        logConnection("/choreData", next);
+        logConnection("/choreData", req, res, next);
     }, (req, res) => {
         const myApp = application("choreApp");
         myApp.post(req, res);
