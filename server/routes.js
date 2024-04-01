@@ -13,7 +13,8 @@ module.exports = (config) => {
     
         // Get IP address of the connecting device
         // Note: 'req.ip' might show the proxy's IP. Use 'req.headers['x-forwarded-for']' if behind a proxy.
-        const ip = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'].split(',').pop();
+        // const ip = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'].split(',').pop();
+        const ip = req.headers['x-forwarded-for'].split(',').pop();
     
         // Collect other relevant information (customize as needed)
         const method = req.method;
