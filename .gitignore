@@ -6,6 +6,8 @@ server/apps/choreApp.json
 server/package-lock.json
 server/apps/app_engine/*
 server/apps/*/*
+server/server.cert
+server/server.key
 
 /doku*
 *.bat
