@@ -16,6 +16,8 @@ const config = JSON.parse(fs.readFileSync(path.join("/home_server", "server", "c
 
 app.use(routes(config));
 
+app.set("trust proxy", true);
+
 // Load SSL key and certificate
 const privateKey = fs.readFileSync(config.serverInfo.key, 'utf8');
 const certificate = fs.readFileSync(config.serverInfo.cert, 'utf8');
