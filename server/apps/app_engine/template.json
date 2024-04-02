@@ -3,7 +3,8 @@
         "name": "Enter application name:",
         "appCode": "Enter application code:",
         "pageName": "Enter page name (or enter to use appCode):",
-        "hostName": "Enter host name:"
+        "hostName": "Enter host name:",
+        "qrFile": "qr_code.png"
     },
     "includes": {
         "js": [],

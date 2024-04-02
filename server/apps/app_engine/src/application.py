@@ -3,29 +3,11 @@ from utils import *
 import qrcode
 
 class Application(ABC):
-    def __init__(self, appCode: str) -> None:
-        self._conf = readFile(conf)
+    def __init__(self, appFn: str) -> None:
+        self._conf = readFile(appFn)
         details = self._conf["details"]
 
-        appDir = os.path.join(["..", details["appCode"]])
-        self._appDir = appDir
-
-        if(not os.path.isdir(appDir)):
-            os.mkdir(appDir)
-            templateFn = "./template.json"
-            appJson = os.path.join(appDir, f"{details['appCode']}.json")
-
-            template = readFile(templateFn)
-
-            for key in template["details"]:
-                ...
-
-            url = "/".join([
-                details["hostName"],
-                details["pageName"]
-            ])
-
-            self.__generate_and_save_qr(url)
+        ...
 
         return
 
