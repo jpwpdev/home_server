@@ -117,5 +117,17 @@ module.exports = (config) => {
 
     //=============================================================================== checklist app =================================================================================
 
+    router.get("/", (req, res, next) => {
+        logConnection("/", req, res, next);
+    }, (req, res) => {
+        fs.readFile(path.join("/home_server/server/pages/index.html"), "utf-8", (err, data) => {
+            if(err)
+            {
+                res.status(500).send("Error");
+            }
+            res.status(200).send(data);
+        })
+    });
+
     return router;
 };
