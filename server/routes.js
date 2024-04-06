@@ -153,6 +153,7 @@ module.exports = (config) => {
     });
 
     router.post("/rokuRemote", (req, res, next) => {
+        console.log("TESTTEST");
         logConnection("/rokuRemote", req, res, next);
     }, async (req, res) => {
         const rokuIP = '10.0.0.215'; // Replace this with the actual IP address of your Roku device
