@@ -7,17 +7,17 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     document.getElementById('roku-home').onclick = function() {
-        sendRokuCommand('/keypress/Home');
+        sendRokuCommand('keypress/Home');
     };
 
     document.getElementById('search-button').onclick = function() {
         const searchQuery = document.getElementById('search-input').value;
-        sendRokuCommand(`/search/browse?keyword=${encodeURIComponent(searchQuery)}`);
+        sendRokuCommand(`search/browse?keyword=${encodeURIComponent(searchQuery)}`);
     };
 
     document.getElementById('launch-app').onclick = function() {
         const appId = document.getElementById('app-list').value;
-        sendRokuCommand(`/launch/${appId}`);
+        sendRokuCommand(`launch/${appId}`);
     };
 
     // function sendRokuCommand(command) {
