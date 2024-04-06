@@ -36,18 +36,29 @@ document.addEventListener('DOMContentLoaded', function() {
     //         .catch(error => console.error('Error:', error));
     // }
 
-    function sendRokuCommand(command) {
+    function sendRokuCommand(command, m = "POST") {
         console.log(`sending command ${command} to ${serverIP}`);
-        fetch(`https://${serverIP}/rokuRemote`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ command }),
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+        try
+        {
+            fetch(`https://${serverIP}/rokuRemote`, {
+                method: m,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ command }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        } catch(e)
+        {
+            fetch(`https://${serverIP}/rokuRemote`, {
+                method: m
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
     }
     
 
