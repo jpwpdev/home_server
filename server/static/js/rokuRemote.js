@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
 
     function sendRokuCommand(command) {
-        fetch(`http://${serverIP}/rokuRemote`, {
+        fetch(`https://${serverIP}/rokuRemote`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
 
     function populateAppList() {
-        fetch(`http://${serverIP}/rokuRemote/populateAppList`, {
+        fetch(`https://${serverIP}/rokuRemote/populateAppList`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
