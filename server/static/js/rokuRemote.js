@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('search-button').onclick = function() {
         const searchQuery = document.getElementById('search-input').value;
         console.log(searchQuery);
-        sendRokuCommand(`search/browse?keyword=${encodeURIComponent(searchQuery)}`);
+        sendRokuCommand(`search/browse?keyword=${encodeURIComponent(searchQuery)}`, "GET");
     };
 
     document.getElementById('launch-app').onclick = function() {
