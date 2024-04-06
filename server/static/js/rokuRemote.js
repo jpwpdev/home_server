@@ -56,14 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
             method: m,
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
         };
     
         if(m === "POST") {
             fetchOptions.body = JSON.stringify({ command });
         }
+
+        const APIEndpoint = (m === "POST" ? `https://${serverIP}/rokuRemote` : `https://${serverIP}/rokuRemote/search`)
     
-        fetch(`https://${serverIP}/rokuRemote`, fetchOptions)
+        fetch(APIEndpoint, fetchOptions)
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
