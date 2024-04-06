@@ -37,8 +37,6 @@ module.exports = (config) => {
     
         // Construct the log string
         const logString = `${timestamp} - IP: ${ip} - Method: ${method} - URL: ${url}\n`;
-
-        console.log(logString);
     
         // Append to log file asynchronously
         fs.appendFile(logFilePath, logString, (err) => {
@@ -157,7 +155,6 @@ module.exports = (config) => {
     });
 
     router.post("/rokuRemote", (req, res, next) => {
-        console.log("TESTTEST");
         logConnection("/rokuRemote", req, res, next);
     }, async (req, res) => {
         const rokuIP = '10.0.0.215'; // Replace this with the actual IP address of your Roku device
@@ -176,10 +173,6 @@ module.exports = (config) => {
                     // Include headers if Roku API requires them
                 }
             });
-
-            console.log(commandIP);
-            console.log(rokuResponse);
-            console.log("WEE WOO WEE WOO");
 
             if (!rokuResponse.ok) throw new Error('Failed to communicate with Roku device.');
 
