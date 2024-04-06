@@ -1,3 +1,5 @@
+const { log } = require("console");
+
 module.exports = (config) => {
     const router = require("express").Router();
     const {spawn} = require("child_process");
@@ -141,6 +143,34 @@ module.exports = (config) => {
             }
             res.status(200).send(data);
         });
+    });
+
+    router.post("/rokuRemote", (req, res, next) => {
+        logConnection("/rokuRemote", req, res, next);
+    }, async (req, res) => {
+        const rokuIP = '10.0.0.215'; // Replace this with the actual IP address of your Roku device
+        const command = req.body.command;
+
+        // Ensure there's a command and potentially validate it
+        if (!command) {
+            return res.status(400).send({ error: 'Command not specified' });
+        }
+
+        try {
+            const rokuResponse = await fetch(`https://${rokuIP}:8060/${command}`, {
+                method: 'POST',
+                headers: {
+                    // Include headers if Roku API requires them
+                }
+            });
+
+            if (!rokuResponse.ok) throw new Error('Failed to communicate with Roku device.');
+
+            res.status(200).send({ success: true, message: 'Command sent successfully.' });
+        } catch (error) {
+            console.error('Error sending command to Roku:', error);
+            res.status(500).send({ success: false, error: error.message });
+        }
     });
 
     //================================================================================ roku remote ==================================================================================

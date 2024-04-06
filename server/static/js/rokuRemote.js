@@ -20,11 +20,26 @@ document.addEventListener('DOMContentLoaded', function() {
         sendRokuCommand(`/launch/${appId}`);
     };
 
+    // function sendRokuCommand(command) {
+    //     fetch(baseURL + command, { method: 'POST' })
+    //         .then(response => console.log(response.status))
+    //         .catch(error => console.error('Error:', error));
+    // }
+
     function sendRokuCommand(command) {
-        fetch(baseURL + command, { method: 'POST' })
-            .then(response => console.log(response.status))
-            .catch(error => console.error('Error:', error));
+        const serverIP = '$10.0.0.64$'; // Replace this with your server's IP address
+        fetch(`http://${serverIP}/rokuRemote`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ command }),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
     }
+    
 
     // Example function to populate the app list - replace with actual Roku API call if available
     function populateAppList() {
