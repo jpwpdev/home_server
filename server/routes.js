@@ -166,7 +166,7 @@ module.exports = (config) => {
         }
 
         if(command.includes('?')) {
-            const [basePath, queryParams] = command.split('?');
+            let [basePath, queryParams] = command.split('?');
             command = `${basePath}?${encodeURIComponent(queryParams)}`;
         }
 
