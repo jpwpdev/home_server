@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.btn').forEach(button => {
+            console.log("button event listener set");
             button.addEventListener('click', function() {
                 const command = this.id; // Use button ID as command for simplicity
                 console.log(command);
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
 
     function sendRokuCommand(command) {
+        console.log(`sending command ${command} to ${serverIP}`);
         fetch(`https://${serverIP}/rokuRemote`, {
             method: 'POST',
             headers: {
