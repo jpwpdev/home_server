@@ -165,6 +165,11 @@ module.exports = (config) => {
             return res.status(400).send({ error: 'Command not specified' });
         }
 
+        if(command.includes('?')) {
+            const [basePath, queryParams] = command.split('?');
+            command = `${basePath}?${encodeURIComponent(queryParams)}`;
+        }
+
         try {
             const commandIP = `http://${rokuIP}:8060/${command}`;
             console.log(commandIP);
