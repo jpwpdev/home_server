@@ -1,0 +1,9 @@
+{
+    "serverInfo": {
+        "host": "0.0.0.0"
+    },
+    "newApps": {
+        "portCounter": 5000,
+        "openPorts": []
+    }
+}
