@@ -164,7 +164,7 @@ module.exports = (config) => {
         }
 
         try {
-            const rokuResponse = await fetch(`https://${rokuIP}:8060/${command}`, {
+            const rokuResponse = await fetch(`http://${rokuIP}:8060/${command}`, {
                 method: 'POST',
                 headers: {
                     // Include headers if Roku API requires them
@@ -186,7 +186,7 @@ module.exports = (config) => {
         const rokuIP = '10.0.0.215'; // Replace this with the actual IP address of your Roku device
         
         try {
-            const response = await fetch(`https://${rokuIP}:8060/query/apps`);
+            const response = await fetch(`http://${rokuIP}:8060/query/apps`);
             const text = await response.text();
             const data = new DOMParser().parseFromString(text, "text/xml");
             const apps = Array.from(data.querySelectorAll('app')).map(app => ({
