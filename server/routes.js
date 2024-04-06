@@ -183,7 +183,7 @@ module.exports = (config) => {
     router.get("/rokuRemote/populateAppList", (req, res, next) => {
         logConnection("/rokuRemote/populateAppList", req, res, next);
     }, async (req, res) => {
-        const rokuIP = '$ROKU_IP$'; // Replace this with the actual IP address of your Roku device
+        const rokuIP = '10.0.0.215'; // Replace this with the actual IP address of your Roku device
         
         try {
             const response = await fetch(`https://${rokuIP}:8060/query/apps`);
