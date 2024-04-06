@@ -178,6 +178,7 @@ module.exports = (config) => {
             });
 
             console.log(commandIP);
+            console.log(rokuResponse);
 
             if (!rokuResponse.ok) throw new Error('Failed to communicate with Roku device.');
 
