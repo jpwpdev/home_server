@@ -169,7 +169,8 @@ module.exports = (config) => {
         }
 
         try {
-            const rokuResponse = await fetch(`http://${rokuIP}:8060/${command}`, {
+            const commandIP = `http://${rokuIP}:8060/${command}`;
+            const rokuResponse = await fetch(commandIP, {
                 method: 'POST',
                 headers: {
                     // Include headers if Roku API requires them
