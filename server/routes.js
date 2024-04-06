@@ -174,7 +174,10 @@ module.exports = (config) => {
             const commandIP = `http://${rokuIP}:8060/${command}`;
             console.log(commandIP);
             const rokuResponse = await fetch(commandIP, {
-                method: 'GET'
+                method: 'GET',
+                headers: {
+                    // Include headers if Roku API requires them
+                }
             });
 
             if (!rokuResponse.ok) throw new Error('Failed to communicate with Roku device.');

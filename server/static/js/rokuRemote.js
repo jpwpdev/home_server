@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('search-button').onclick = function() {
         const searchQuery = document.getElementById('search-input').value;
         console.log(searchQuery);
-        sendRokuCommand(`search/browse?keyword=${encodeURIComponent(searchQuery)}`, "GET");
+        sendRokuCommand(`search/browse?keyword=${encodeURIComponent(searchQuery)}`);
     };
 
     document.getElementById('launch-app').onclick = function() {
@@ -36,31 +36,38 @@ document.addEventListener('DOMContentLoaded', function() {
     //         .catch(error => console.error('Error:', error));
     // }
 
+    // function sendRokuCommand(command, m = "POST") {
+    //     console.log(`sending command ${command} to ${serverIP}`);
+    //     fetch(`https://${serverIP}/rokuRemote`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({ command }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    //     .catch(error => console.error('Error:', error));
+    // }
+
     function sendRokuCommand(command, m = "POST") {
         console.log(`sending command ${command} to ${serverIP}`);
-        try
-        {
-            fetch(`https://${serverIP}/rokuRemote`, {
-                method: m,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ command }),
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
-        } catch(e)
-        {
-            fetch(`https://${serverIP}/rokuRemote`, {
-                method: m
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
-        }
-    }
+        const fetchOptions = {
+            method: m,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
     
+        if(m === "POST") {
+            fetchOptions.body = JSON.stringify({ command });
+        }
+    
+        fetch(`https://${serverIP}/rokuRemote`, fetchOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }    
 
     // // Example function to populate the app list - replace with actual Roku API call if available
     // function populateAppList() {
