@@ -154,6 +154,38 @@ module.exports = (config) => {
         });
     });
 
+    router.get("/rokuRemote/search", (req, res, next) => {
+        logConnection("/rokuRemote/search", req, res, next);
+    }, async (req, res) => {
+        const rokuIP = '10.0.0.215'; // Replace this with the actual IP address of your Roku device
+        let command = req.body.command;
+
+        // Ensure there's a command and potentially validate it
+        if (!command) {
+            return res.status(400).send({ error: 'Command not specified' });
+        }
+
+        if(command.includes('?')) {
+            const [basePath, queryParams] = command.split('?');
+            command = `${basePath}?${encodeURIComponent(queryParams)}`;
+        }
+
+        try {
+            const commandIP = `http://${rokuIP}:8060/${command}`;
+            console.log(commandIP);
+            const rokuResponse = await fetch(commandIP, {
+                method: 'GET'
+            });
+
+            if (!rokuResponse.ok) throw new Error('Failed to communicate with Roku device.');
+
+            res.status(200).send({ success: true, message: 'Command sent successfully.' });
+        } catch (error) {
+            console.error('Error sending command to Roku:', error);
+            res.status(500).send({ success: false, error: error.message });
+        }
+    });
+
     router.post("/rokuRemote", (req, res, next) => {
         logConnection("/rokuRemote", req, res, next);
     }, async (req, res) => {
