@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
         sendRokuCommand(`launch/${appId}`);
     };
 
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const command = this.id; // Use button ID as command for simplicity
+                sendRokuCommand(command); // Implement this function based on your server's API
+            });
+        });
+    });
+
     // function sendRokuCommand(command) {
     //     fetch(baseURL + command, { method: 'POST' })
     //         .then(response => console.log(response.status))

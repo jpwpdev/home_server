@@ -50,3 +50,49 @@ input[type="text"]:focus, select:focus {
 ::placeholder {
     color: #ccc;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+}
+
+.remote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.btn {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+.directional {
+    display: grid;
+    grid-template-areas: 
+        " . up . "
+        "left ok right"
+        " . down . ";
+    gap: 5px;
+}
+
+#up { grid-area: up; }
+#left { grid-area: left; }
+#ok { grid-area: ok; }
+#right { grid-area: right; }
+#down { grid-area: down; }
