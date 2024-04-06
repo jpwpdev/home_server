@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const rokuIP = '$ROKU_IP$';
+    const rokuIP = '10.0.0.64';
     const baseURL = `https://${rokuIP}`;
 
     document.getElementById('app-home').onclick = function() {
