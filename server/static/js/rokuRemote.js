@@ -20,14 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
         sendRokuCommand(`launch/${appId}`);
     };
 
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.btn').forEach(button => {
-            console.log("button event listener set");
-            button.addEventListener('click', function() {
-                const command = this.id; // Use button ID as command for simplicity
-                console.log(command);
-                sendRokuCommand("keypress/"+command); // Implement this function based on your server's API
-            });
+    document.querySelectorAll('.btn').forEach(button => {
+        console.log("button event listener set");
+        button.addEventListener('click', function() {
+            const command = this.id; // Use button ID as command for simplicity
+            console.log(command);
+            sendRokuCommand("keypress/"+command); // Implement this function based on your server's API
         });
     });
 
