@@ -28,14 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Example function to populate the app list - replace with actual Roku API call if available
     function populateAppList() {
-        const apps = [{id: '12', name: 'Netflix'}, {id: '13', name: 'Hulu'}]; // Example data
-        const appList = document.getElementById('app-list');
-        apps.forEach(app => {
-            let option = document.createElement('option');
-            option.value = app.id;
-            option.textContent = app.name;
-            appList.appendChild(option);
-        });
+        fetch(`https://${rokuIP}:8060/query/apps`)
+            .then(response => response.text())
+            .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+            .then(data => {
+                const apps = data.querySelectorAll('app');
+                const appList = document.getElementById('app-list');
+                apps.forEach(app => {
+                    let option = document.createElement('option');
+                    option.value = app.getAttribute('id');
+                    option.textContent = app.textContent;
+                    appList.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     populateAppList(); // Call this function to populate the dropdown with available apps
