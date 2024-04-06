@@ -44,7 +44,9 @@ module.exports = (config) => {
         fs.appendFile(logFilePath, logString, (err) => {
             if (err) {
                 console.error('Error writing to log file:', err);
+                // res.status(500).send("ERROR LOGGING");
             }
+            console.log("calling next");
             // Call next() whether logging succeeded or failed to not interrupt the request lifecycle
             next();
         });
