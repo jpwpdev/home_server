@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
 
     function populateAppList() {
-        const serverIP = '$SERVER_IP$'; // Replace this with your server's IP address
         fetch(`http://${serverIP}/rokuRemote/populateAppList`, {
             method: 'GET',
             headers: {
