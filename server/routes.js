@@ -37,6 +37,8 @@ module.exports = (config) => {
     
         // Construct the log string
         const logString = `${timestamp} - IP: ${ip} - Method: ${method} - URL: ${url}\n`;
+
+        console.log(logString);
     
         // Append to log file asynchronously
         fs.appendFile(logFilePath, logString, (err) => {
@@ -140,17 +142,17 @@ module.exports = (config) => {
 
     //================================================================================ roku remote ==================================================================================
 
-    // router.get("/rokuRemote", (req, res, next) => {
-    //     logConnection("/rokuRemote", req, res, next);
-    // }, (req, res) => {
-    //     fs.readFile(path.join("/home_server", "server", "pages", "rokuRemote.html"), "utf-8", (e, data) => {
-    //         if(e)
-    //         {
-    //             res.status(500).send("Error");
-    //         }
-    //         res.status(200).send(data);
-    //     });
-    // });
+    router.get("/rokuRemote", (req, res, next) => {
+        logConnection("/rokuRemote", req, res, next);
+    }, (req, res) => {
+        fs.readFile(path.join("/home_server", "server", "pages", "rokuRemote.html"), "utf-8", (e, data) => {
+            if(e)
+            {
+                res.status(500).send("Error");
+            }
+            res.status(200).send(data);
+        });
+    });
 
     router.post("/rokuRemote", (req, res, next) => {
         console.log("TESTTEST");
