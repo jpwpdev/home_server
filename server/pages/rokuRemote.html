@@ -8,18 +8,26 @@
     <link rel="stylesheet" type="text/css" href="/css/rokuRemote.css">
 </head>
 <body>
-    <button id="app-home">App Home</button>
-    <button id="roku-home">Roku Home</button>
-    <input type="text" id="search-input">
-    <button id="search-button">Search</button>
-    <select id="app-list">
-        <!-- Options will be populated by JavaScript -->
-    </select>
-    <button id="launch-app">Launch App</button>
+    <div id="smart-remote">
+        <button id="app-home">App Home</button>
+        <button id="roku-home">Roku Home</button>
+        <input type="text" id="search-input">
+        <button id="search-button">Search</button>
+        <select id="app-list">
+            <!-- Options will be populated by JavaScript -->
+        </select>
+        <button id="launch-app">Launch App</button>
+    </div>
+
     <div class="remote">
         <button class="btn" id="power">Power</button>
         <button class="btn" id="home">Home</button>
         <button class="btn" id="back">Back</button>
+        <button class="btn" id="info">Info</button>
+
+        <button class="btn" id="volumeup">Volume Up</button>
+        <button class="btn" id="volumedown">Volume Down</button>
+
         <div class="directional">
             <button class="btn" id="up">Up</button>
             <button class="btn" id="left">Left</button>
@@ -27,9 +35,10 @@
             <button class="btn" id="right">Right</button>
             <button class="btn" id="down">Down</button>
         </div>
-        <button class="btn" id="rewind">Rewind</button>
-        <button class="btn" id="play-pause">Play/Pause</button>
-        <button class="btn" id="fast-forward">Fast Forward</button>
+
+        <button class="btn" id="rev">Rewind</button>
+        <button class="btn" id="play">Play/Pause</button>
+        <button class="btn" id="fwd">Fast Forward</button>
         <!-- Add more buttons as needed -->
     </div>
 </body>
