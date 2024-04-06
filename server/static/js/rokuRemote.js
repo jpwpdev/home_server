@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.btn').forEach(button => {
             button.addEventListener('click', function() {
                 const command = this.id; // Use button ID as command for simplicity
+                console.log(command);
                 sendRokuCommand("keypress/"+command); // Implement this function based on your server's API
             });
         });
