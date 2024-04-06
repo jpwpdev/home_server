@@ -37,6 +37,7 @@ module.exports = (config) => {
     
         // Construct the log string
         const logString = `${timestamp} - IP: ${ip} - Method: ${method} - URL: ${url}\n`;
+        console.log(logString);
     
         // Append to log file asynchronously
         fs.appendFile(logFilePath, logString, (err) => {
