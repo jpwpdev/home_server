@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,17 @@
     <script type="application/javascript" src="/js/rokuRemote.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/rokuRemote.css">
 </head>
+
 <body>
+    <div id="application-components">
+        <button id="app-home">Home Network Home Page</button>
+        <div id="roku-selection">
+            <button class="roku-select" data-roku="Living Room">Living Room Roku</button>
+            <button class="roku-select" data-roku="Bedroom">Bedroom Roku</button>
+        </div>
+    </div>    
+
     <div id="smart-remote">
-        <button id="app-home">App Home</button>
         <button id="roku-home">Roku Home</button>
         <input type="text" id="search-input">
         <button id="search-button">Search</button>

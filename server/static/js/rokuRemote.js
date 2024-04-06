@@ -1,3 +1,5 @@
+let selectedRoku = "Living Room"; // Default selection
+
 document.addEventListener('DOMContentLoaded', function() {
     const serverIP = '10.0.0.64';
     const baseURL = `https://${serverIP}`;
@@ -30,37 +32,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // function sendRokuCommand(command) {
-    //     fetch(baseURL + command, { method: 'POST' })
-    //         .then(response => console.log(response.status))
-    //         .catch(error => console.error('Error:', error));
-    // }
-
     // function sendRokuCommand(command, m = "POST") {
     //     console.log(`sending command ${command} to ${serverIP}`);
-    //     fetch(`https://${serverIP}/rokuRemote`, {
-    //         method: 'POST',
+    //     const fetchOptions = {
+    //         method: m,
     //         headers: {
     //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({ command }),
-    //     })
+    //         }
+    //     };
+    
+    //     if(m === "POST") {
+    //         fetchOptions.body = JSON.stringify({ command });
+    //     }
+
+    //     const APIEndpoint = (m === "POST" ? `https://${serverIP}/rokuRemote` : `https://${serverIP}/rokuRemote/search`)
+    
+    //     fetch(APIEndpoint, fetchOptions)
     //     .then(response => response.json())
     //     .then(data => console.log(data))
     //     .catch(error => console.error('Error:', error));
     // }
 
+    document.querySelectorAll('.roku-select').forEach(button => {
+        button.addEventListener('click', function() {
+            selectedRoku = this.getAttribute('data-roku');
+            document.querySelectorAll('.roku-select').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
     function sendRokuCommand(command, m = "POST") {
-        console.log(`sending command ${command} to ${serverIP}`);
+        console.log(`sending command ${command} to ${serverIP}, Roku: ${selectedRoku}`);
         const fetchOptions = {
             method: m,
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
         };
-    
+
         if(m === "POST") {
-            fetchOptions.body = JSON.stringify({ command });
+            fetchOptions.body = JSON.stringify({ command, roku: selectedRoku });
         }
 
         const APIEndpoint = (m === "POST" ? `https://${serverIP}/rokuRemote` : `https://${serverIP}/rokuRemote/search`)
@@ -69,25 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
-    }    
-
-    // // Example function to populate the app list - replace with actual Roku API call if available
-    // function populateAppList() {
-    //     fetch(`https://${serverIP}:8060/query/apps`)
-    //         .then(response => response.text())
-    //         .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-    //         .then(data => {
-    //             const apps = data.querySelectorAll('app');
-    //             const appList = document.getElementById('app-list');
-    //             apps.forEach(app => {
-    //                 let option = document.createElement('option');
-    //                 option.value = app.getAttribute('id');
-    //                 option.textContent = app.textContent;
-    //                 appList.appendChild(option);
-    //             });
-    //         })
-    //         .catch(error => console.error('Error:', error));
-    // }
+    }
 
     function populateAppList() {
         fetch(`https://${serverIP}/rokuRemote/populateAppList`, {
