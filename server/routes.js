@@ -158,7 +158,7 @@ module.exports = (config) => {
         logConnection("/rokuRemote", req, res, next);
     }, async (req, res) => {
         const rokuIP = '10.0.0.215'; // Replace this with the actual IP address of your Roku device
-        const command = req.body.command;
+        let command = req.body.command;
 
         // Ensure there's a command and potentially validate it
         if (!command) {
@@ -166,7 +166,7 @@ module.exports = (config) => {
         }
 
         if(command.includes('?')) {
-            let [basePath, queryParams] = command.split('?');
+            const [basePath, queryParams] = command.split('?');
             command = `${basePath}?${encodeURIComponent(queryParams)}`;
         }
 
