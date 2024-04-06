@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const rokuIP = '10.0.0.64';
-    const baseURL = `https://${rokuIP}`;
+    const serverIP = '10.0.0.64';
+    const baseURL = `https://${serverIP}`;
 
     document.getElementById('app-home').onclick = function() {
         window.location.href = '/';
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
 
     function sendRokuCommand(command) {
-        const serverIP = '$10.0.0.64$'; // Replace this with your server's IP address
         fetch(`http://${serverIP}/rokuRemote`, {
             method: 'POST',
             headers: {
@@ -41,23 +40,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 
-    // Example function to populate the app list - replace with actual Roku API call if available
+    // // Example function to populate the app list - replace with actual Roku API call if available
+    // function populateAppList() {
+    //     fetch(`https://${serverIP}:8060/query/apps`)
+    //         .then(response => response.text())
+    //         .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+    //         .then(data => {
+    //             const apps = data.querySelectorAll('app');
+    //             const appList = document.getElementById('app-list');
+    //             apps.forEach(app => {
+    //                 let option = document.createElement('option');
+    //                 option.value = app.getAttribute('id');
+    //                 option.textContent = app.textContent;
+    //                 appList.appendChild(option);
+    //             });
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    // }
+
     function populateAppList() {
-        fetch(`https://${rokuIP}:8060/query/apps`)
-            .then(response => response.text())
-            .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-            .then(data => {
-                const apps = data.querySelectorAll('app');
-                const appList = document.getElementById('app-list');
-                apps.forEach(app => {
-                    let option = document.createElement('option');
-                    option.value = app.getAttribute('id');
-                    option.textContent = app.textContent;
-                    appList.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error:', error));
+        const serverIP = '$SERVER_IP$'; // Replace this with your server's IP address
+        fetch(`http://${serverIP}/rokuRemote/populateAppList`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const appList = document.getElementById('app-list');
+            data.apps.forEach(app => {
+                let option = document.createElement('option');
+                option.value = app.id;
+                option.textContent = app.name;
+                appList.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error:', error));
     }
+    
 
     populateAppList(); // Call this function to populate the dropdown with available apps
 });

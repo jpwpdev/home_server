@@ -1,4 +1,11 @@
-const { log } = require("console");
+const fetch = require('node-fetch');
+
+const { JSDOM } = require('jsdom');
+const { window } = new JSDOM("");
+const { document } = (new JSDOM('')).window;
+global.document = document;
+const DOMParser = window.DOMParser;
+
 
 module.exports = (config) => {
     const router = require("express").Router();
@@ -169,6 +176,27 @@ module.exports = (config) => {
             res.status(200).send({ success: true, message: 'Command sent successfully.' });
         } catch (error) {
             console.error('Error sending command to Roku:', error);
+            res.status(500).send({ success: false, error: error.message });
+        }
+    });
+
+    router.get("/rokuRemote/populateAppList", (req, res, next) => {
+        logConnection("/rokuRemote/populateAppList", req, res, next);
+    }, async (req, res) => {
+        const rokuIP = '$ROKU_IP$'; // Replace this with the actual IP address of your Roku device
+        
+        try {
+            const response = await fetch(`https://${rokuIP}:8060/query/apps`);
+            const text = await response.text();
+            const data = new DOMParser().parseFromString(text, "text/xml");
+            const apps = Array.from(data.querySelectorAll('app')).map(app => ({
+                id: app.getAttribute('id'),
+                name: app.textContent
+            }));
+    
+            res.status(200).json({apps});
+        } catch (error) {
+            console.error('Error fetching apps from Roku:', error);
             res.status(500).send({ success: false, error: error.message });
         }
     });
