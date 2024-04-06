@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('search-button').onclick = function() {
         const searchQuery = document.getElementById('search-input').value;
+        console.log(searchQuery);
         sendRokuCommand(`search/browse?keyword=${encodeURIComponent(searchQuery)}`);
     };
 
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.btn').forEach(button => {
         console.log("button event listener set");
         button.addEventListener('click', function() {
-            const command = this.id; // Use button ID as command for simplicity
+            const command = (this.id !== "ok" ? this.id : "Select"); // Use button ID as command for simplicity
             console.log(command);
             sendRokuCommand("keypress/"+command); // Implement this function based on your server's API
         });
