@@ -167,6 +167,7 @@ module.exports = (config) => {
 
         try {
             const commandIP = `http://${rokuIP}:8060/${command}`;
+            console.log(commandIP);
             const rokuResponse = await fetch(commandIP, {
                 method: 'POST',
                 headers: {
