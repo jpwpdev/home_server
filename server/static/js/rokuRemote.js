@@ -32,46 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // function sendRokuCommand(command, m = "POST") {
-    //     console.log(`sending command ${command} to ${serverIP}`);
-    //     const fetchOptions = {
-    //         method: m,
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         }
-    //     };
-    
-    //     if(m === "POST") {
-    //         fetchOptions.body = JSON.stringify({ command });
-    //     }
-
-    //     const APIEndpoint = (m === "POST" ? `https://${serverIP}/rokuRemote` : `https://${serverIP}/rokuRemote/search`)
-    
-    //     fetch(APIEndpoint, fetchOptions)
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    //     .catch(error => console.error('Error:', error));
-    // }
-
-    document.querySelectorAll('.roku-select').forEach(button => {
-        button.addEventListener('click', function() {
-            selectedRoku = this.getAttribute('data-roku');
-            document.querySelectorAll('.roku-select').forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
     function sendRokuCommand(command, m = "POST") {
-        console.log(`sending command ${command} to ${serverIP}, Roku: ${selectedRoku}`);
+        console.log(`sending command ${command} to ${serverIP}`);
         const fetchOptions = {
             method: m,
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
         };
-
+    
         if(m === "POST") {
-            fetchOptions.body = JSON.stringify({ command, roku: selectedRoku });
+            fetchOptions.body = JSON.stringify({ command });
         }
 
         const APIEndpoint = (m === "POST" ? `https://${serverIP}/rokuRemote` : `https://${serverIP}/rokuRemote/search`)
