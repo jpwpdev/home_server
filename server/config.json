@@ -24,6 +24,9 @@
         },
         "/choreApp": {
             "html": "choreApp.html"
+        },
+        "/taskList": {
+            "html": "taskList.html"
         }
     }
 }
