@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="taskListApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Task List App</title>
+    <link rel="stylesheet" href="/css/fridgeApp.css">
+</head>
+
+<body ng-controller="MainController">
+    <select ng-model="selectedPerson" ng-options="person for person in people" ng-change="selectPerson(selectedPerson)"></select>
+
+    <div class="items-container">
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Priority</th>
+            </tr>
+            <tr ng-repeat="task in tasks | orderBy: 'priority'">
+                <td>{{ task.name }}</td>
+                <td>{{ task.priority }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="input-area">
+        <input type="text" ng-model="newTask.name" placeholder="Task Name">
+        <select ng-model="newTask.priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+        <button ng-click="addTask()">Add Task</button>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script type="application/javascript" src="js/taskList.js"></script>
+</body>
+
+</html>

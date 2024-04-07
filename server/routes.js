@@ -253,5 +253,28 @@ module.exports = (config) => {
 
     //================================================================================ roku remote ==================================================================================
 
+    //================================================================================= task list ===================================================================================
+
+    router.get("/taskList", (req, res, next) => {
+        const connectionData = {
+            req: req,
+            res: res,
+            next: next
+        };
+        logConnection("/taskList", req, res, next);
+    }, (req, res) => {
+        const myApp = application("taskList");
+        myApp.get(req, res);
+    });
+
+    router.post("/taskList", (req, res, next) => {
+        logConnection("/taskList", req, res, next);
+    }, (req, res) => {
+        const myApp = application("taskList");
+        myApp.post(req, res);
+    });
+
+    //================================================================================= task list ===================================================================================
+
     return router;
 };
