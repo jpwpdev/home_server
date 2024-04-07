@@ -255,7 +255,7 @@ module.exports = (config) => {
 
     //================================================================================= task list ===================================================================================
 
-    router.get("/taskList", (req, res, next) => {
+    router.get("/taskListData", (req, res, next) => {
         const connectionData = {
             req: req,
             res: res,
@@ -267,7 +267,7 @@ module.exports = (config) => {
         myApp.get(req, res);
     });
 
-    router.post("/taskList", (req, res, next) => {
+    router.post("/taskListData", (req, res, next) => {
         logConnection("/taskList", req, res, next);
     }, (req, res) => {
         const myApp = application("taskList");
